@@ -1,7 +1,7 @@
 language: python
 
 python:
-  - 3.10.1
+  - 3.8.1
 
 env:
   - SECRET_KEY="jango-insecure-+=jd0bdk8l0nithacjiy2!93bkkb2*alp5i3b)h+s0c7_%h1sq"
