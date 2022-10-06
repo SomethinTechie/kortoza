@@ -1,8 +1,8 @@
 asgiref
 Django
 gunicorn
-jsons=
-notifications=
+jsons
+notifications
 psycopg
 psycopg2-binary
 sqlparse
