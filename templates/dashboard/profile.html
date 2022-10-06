@@ -1,0 +1,18 @@
+{% extends 'baseLayout.html' %}
+{% block content %}
+	<div class="col-md-12" style="height: 100%;">
+		<!-- <div class="container"> -->
+			<div class="header">
+				<div class="col-md-4">
+					Dashboard
+				</div>
+				<div class="col-md-4 fr">
+					<div class="avatar"></div>
+				</div>
+			</div>
+			<div class="fc p4 col-md-12">
+				Welcome {{ user.username }}
+			</div>
+		<!-- </div> -->
+	</div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'baseLayout.html' %}
+{% block content %}
+	<div class="col-md-4 p4" style="background: #fff;">
+		<h1 class="mb-4">Edit profile</h1>
+		<form action="/profile/update" method="POST">
+			{% csrf_token %}
+			<div class="form-group">
+				<div class="input-group">
+					<input name="username" type="text" class="ui-input bb1" placeholder="Username" value="{{ user.username }}">
+				</div>
+				<div class="input-group">
+					<input name="first_name" type="text" class="ui-input bb1" placeholder="First name" value="{{ user.first_name }}">
+				</div>
+				<div class="input-group bb1">
+					<input name="last_name" type="text" class="ui-input" placeholder="last name" value="{{ user.last_name }}">
+				</div>
+				<div class="input-group bb1">
+					<input name="email" type="text" class="ui-input" placeholder="Email" value="{{ user.email }}">
+				</div>
+				<div class="input-group bb1">
+					<input name="phone_number" type="text" class="ui-input" placeholder="phone_number" value="{{ user.profile.phone_number }}">
+				</div>
+				<div class="input-group bb1">
+					<input name="home_address" type="text" class="ui-input" placeholder="home_address" value="{{ user.profile.home_address }}">
+				</div>
+			</div>
+
+			<input type="submit" value="UPDATE PROFILE" class="mt-4">
+			<a href="/dashboard" class="btn col-md-12 mt-2">GO BACK</a>
+		</form>
+	</div>
+{% endblock %}

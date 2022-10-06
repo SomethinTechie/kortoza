@@ -1,0 +1,27 @@
+{% extends 'baseLayout.html' %}
+{% include 'nav.html' %}
+{% block content %}
+	<div class="p4 card col-md-3">
+		<h1 class="mb-4">Login</h1>
+		{% if messages %}
+			{% for message in messages %}
+				<li style="list-style: none;margin-bottom: 10px;">{{ message }}</li>
+			{% endfor %}
+		{% endif %}
+		<form action="" method="POST">
+			{% csrf_token %}
+			<div class="form-group">
+				<div class="input-group bb1">
+					<input type="text" name="username" class="ui-input" placeholder="Username">
+				</div>
+				<div class="input-group">
+					<input type="password" name="password" class="ui-input" placeholder="Password">
+				</div>
+			</div>
+			<div class="form-group nb mt-2">
+				<input type="submit" value="SIGN IN">
+			</div>
+			<a href="/register" class="btn col-md-12">SIGN UP</a>
+		</form>
+	</div>
+{% endblock %}

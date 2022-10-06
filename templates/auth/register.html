@@ -1,0 +1,27 @@
+{% extends 'baseLayout.html' %}
+{% include 'nav.html' %}
+{% block content %}
+	<div class="p4 card col-md-3">
+		<h1 class="mb-4">Register</h1>
+		
+		<form action="" method="POST" id="regForm">
+			{% csrf_token %}
+			{{form}}
+			<!-- <div class="form-group">
+				<div class="input-group bb1">
+					<input type="text" name="username" class="ui-input" placeholder="Username">
+				</div>
+				<div class="input-group bb1">
+					<input type="text" name="email" class="ui-input" placeholder="Email">
+				</div>
+				<div class="input-group">
+					<input type="password" class="ui-input" placeholder="Password">
+				</div>
+			</div> -->
+			<div class="form-group nb mt-2">
+				<input type="submit" value="SIGN UP">
+			</div>
+			<a href="/" class="btn col-md-12 mt-2">SIGN IN</a>
+		</form>
+	</div>
+{% endblock %}

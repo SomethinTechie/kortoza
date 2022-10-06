@@ -1,0 +1,62 @@
+{% extends 'baseLayout.html' %}
+{% block content %}
+	<div class="col-md-12" style="height: 100%;padding: 0;">
+		{% include 'includes/navigation.html' %}
+		<div class="fc p4 col-md-12" style="padding: 20px;">
+			Welcome {{ user.username }}
+		</div>
+	</div>
+	<div class="modalView">
+		<div class="card col-md-4" style="padding: 20px;">
+			<div class="card-title">
+				<h4 style="margin: 0!important;">Profile</h4>
+			</div>
+			<li class="listItem"><small>Username</small>{{ user.username }}</li>
+			<li class="listItem"><small>First name</small>{% if user.first_name %} {{ user.first_name }} {% else %} No First name {% endif %}</li>
+			<li class="listItem"><small>Last name</small>{% if user.last_name %} {{ user.last_name }} {% else %} No Last Name {% endif %}</li>
+			<li class="listItem"><small>Email</small>{% if user.email %} {{ user.email }} {% else %} No Email {% endif %}</li>
+
+			<li class="listItem"><small>Phone number</small>{% if user.profile.phone_number %} {{ user.profile.phone_number }} {% else %} No phone number {% endif %}</li>
+			<li class="listItem"><small>Home address</small>{% if user.profile.home_address %} {{ user.profile.home_address }} {% else %} No home address {% endif %}</li>
+			<li class="listItem"><small>Location</small>{% if user.profile.location %} {{ user_obj.profile.location }} {% else %} No home location {% endif %}</li>
+			<a href="/profile/view/" class="btn btn-primary mt-3">EDIT PROFILE</a>
+			<span class="btn btn-default mb-2 mt-1" onclick="closeModal()" style="cursor: pointer;">CANCEL</span>
+		</div>
+	</div>
+
+	<form id="locationFrom" action="/profile/update/location" method="post">
+		{% csrf_token %}
+		<input id="latitude" name="latitude" type="hidden">
+		<input id="longitude" name="longitude" type="hidden">
+	</form>
+
+	<script>
+		if (navigator.geolocation) {
+			var userLocation = {{ user.profile.latitude }}
+			console.log({{ user.profile.latitude }})
+			if (userLocation == '0') {
+				console.log('no location')
+			    if (navigator.geolocation) {
+			        navigator.geolocation.getCurrentPosition(submitPosition);
+			    } else {
+			        console.log("Geolocation is not supported by this browser.")
+			    }
+
+				function submitPosition(position) {
+				    console.log(`${position.coords.latitude } ${position.coords.longitude}`)
+				    $("#latitude").val(position.coords.latitude )
+				    $("#longitude").val(position.coords.longitude)
+				    $('#locationFrom').submit()
+				    $.ajax({
+						url: "/profile/update/location",
+						type: "POST",
+						data: { latitude:  position.coords.latitude , longitude: position.coords.longitude},
+						success: function(data) {
+							console.log(data)
+						}
+					})
+				}
+			}
+	}
+	</script>
+{% endblock %}
