@@ -1,4 +1,4 @@
-asgiref==3.5.2
+asgiref
 Django==4.1.2
 jsons==1.6.3
 notifications==0.3.2
