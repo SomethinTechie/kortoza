@@ -8,3 +8,4 @@ sqlparse
 typing_extensions
 typish
 gunicorn
+whitenoise
