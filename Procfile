@@ -1,1 +1,1 @@
-web: gunicorn kortoza.wsgi:application --log-file -
+web: gunicorn kortoza.wsgi --log-file -
