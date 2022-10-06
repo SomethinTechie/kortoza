@@ -1,4 +1,4 @@
-language: django
+language: python
 
 before-script:
   pip3 install -r requirements.txt
