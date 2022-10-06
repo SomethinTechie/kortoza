@@ -1,1 +1,16 @@
 language: python
+
+python:
+  - 3.10.7
+
+env:
+  - SECRET_KEY="jango-insecure-+=jd0bdk8l0nithacjiy2!93bkkb2*alp5i3b)h+s0c7_%h1sq"
+
+services:
+  - postgressql
+
+install:
+  - pipenv install
+
+script:
+  - python manage.py test
