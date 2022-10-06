@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-+=jd0bdk8l0nithacjiy2!93bkkb2*alp5i3b)h+s0c7_%h1sq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = false
+DEBUG = True
 
-ALLOWED_HOSTS = ['app-kortoza.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -76,8 +76,12 @@ WSGI_APPLICATION = 'kortoza.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd1adggldig2qj2',
+        'USER': 'fitolnhisikjkl',
+        'PASSWORD': '077dad7bdecc7ec37b5567d472de5bb721a67007152b01ac5b442882b0e5421a',
+        'HOST': 'ec2-44-207-153-154.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
@@ -116,8 +120,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_URL = 'static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
