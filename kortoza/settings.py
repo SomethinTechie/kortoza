@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-+=jd0bdk8l0nithacjiy2!93bkkb2*alp5i3b)h+s0c7_%h1sq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = false
+DEBUG = False
 
 ALLOWED_HOSTS = ['https://app-kortoza.herokuapp.com']
 
