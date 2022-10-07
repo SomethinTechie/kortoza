@@ -44,8 +44,7 @@ def register_view(req):
 def dashboard_view(req):
     user = req.user
 
-    profile = Profile.objects.get_or_create(user=user,phone_number='no number',home_address='no home address',latitude=0.0,longitude=0.0)
-    print(profile)
+    profile = Profile.objects.get_or_create(user=user)
 
     # if profile:
     #     ...
