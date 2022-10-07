@@ -102,12 +102,15 @@ def userProfileLocation(req):
 
 @login_required(login_url = '/')
 def usersLocationMap(req):
-    profile = Profile.objects.get(user=req.user)
+    profiles = Profile.objects.all()
     m = folium.Map(location=[0, 10], zoom_start=3)
-    folium.Marker([profile.latitude, profile.longitude]).add_to(m)
+    for profile in profiles:
+        print(profile)
+        folium.Marker([profile.latitude, profile.longitude]).add_to(m)
+
     m = m._repr_html_()
     context = {
-    'm': m,
+        'm': m,
     }
     return render(req, 'dashboard/map.html', context)
 
