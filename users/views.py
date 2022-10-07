@@ -43,17 +43,21 @@ def register_view(req):
 @login_required(login_url = '/')
 def dashboard_view(req):
     user = req.user
-    profile = Profile.objects.get(user=user)
-    if profile:
-        ...
-    else:
-        newProfile = Profile(phone_number='add phone number',home_address='add home address', latitude=0.0,longitude=0.0)
-        newProfile.save()
+
+    profile = Profile.objects.get_or_create(user=user,phone_number='no number',home_address='no home address',latitude=0.0,longitude=0.0)
+    print(profile)
+
+    # if profile:
+    #     ...
+    # else:
+    #     newProfile = Profile(phone_number='add phone number',home_address='add home address', latitude=0.0,longitude=0.0)
+    #     newProfile.save()
 
     context = {
         'user_obj': user,
     }
-    return render(req, 'dashboard/dashboard.html', context)
+
+    return render(req, 'dashboard/dashboard.html')
 
 
 @login_required(login_url = '/')
