@@ -44,13 +44,12 @@ def register_view(req):
 def dashboard_view(req):
     user = req.user
     profile = Profile.objects.get(user=user)
-    if (profile) {
+    if profile:
         ...
-    } else {
+    else:
         newProfile = Profile(phone_number='add phone number',home_address='add home address', latitude=0.0,longitude=0.0)
         newProfile.save()
 
-    }
     context = {
         'user_obj': user,
     }
