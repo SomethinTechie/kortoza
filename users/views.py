@@ -97,7 +97,7 @@ def userProfileLocation(req):
         profile.longitude        = float(req.POST.get("longitude"))
         profile.save()
 
-    return HttpResponse('')
+    return HttpResponse('/dashboard')
 
 
 @login_required(login_url = '/')
