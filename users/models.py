@@ -14,9 +14,11 @@ class Profile(models.Model):
 	created       = models.DateTimeField(auto_now_add = True)
 
 
-	def user_profile(phone_number, home_address, location, instance, *args, **kwargs):
+	def user_profile(phone_number, home_address, location, latitude, longitude, instance, *args, **kwargs):
 		profile = instance
 		phone_number = phone_number
 		home_address = home_address
+		latitude     = latitude
+		longitude    = longitude
 		# action = Feed(user=user, post=post, notification_type=1)
 		# action.save()

@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 import json
+import folium
 
 # auth
 from django.contrib.auth.decorators import login_required
@@ -42,6 +43,14 @@ def register_view(req):
 @login_required(login_url = '/')
 def dashboard_view(req):
     user = req.user
+    profile = Profile.objects.get(user=user)
+    if (profile) {
+        ...
+    } else {
+        newProfile = Profile(phone_number='add phone number',home_address='add home address', latitude=0.0,longitude=0.0)
+        newProfile.save()
+
+    }
     context = {
         'user_obj': user,
     }
@@ -90,8 +99,14 @@ def userProfileLocation(req):
 
 @login_required(login_url = '/')
 def usersLocationMap(req):
-    
-    return render(req, 'dashboard/map.html')
+    profile = Profile.objects.get(user=req.user)
+    m = folium.Map(location=[0, 10], zoom_start=3)
+    folium.Marker([profile.latitude, profile.longitude]).add_to(m)
+    m = m._repr_html_()
+    context = {
+    'm': m,
+    }
+    return render(req, 'dashboard/map.html', context)
 
 
 def userSignup(req):

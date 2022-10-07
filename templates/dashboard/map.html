@@ -1,6 +1,10 @@
 {% extends 'baseLayout.html' %}
+{% load static %}
 {% block content %}
 	<div class="col-md-12" style="height: 100%;padding: 0;">
 		{% include 'includes/navigation.html' %}
+		<div class="map">
+			{{ m | safe }}
+		</div>
 	</div>
 {% endblock %}
