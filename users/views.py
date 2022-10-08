@@ -17,18 +17,22 @@ from .forms import CreateUserForm
 
 # Create your views here.
 def login_view(req):
+    #Reditect logged in users to dashboard
     if req.user.is_authenticated:
         return redirect('/dashboard')
     else:
+        #if a user is not loggged in and sending a post request, authenticate them.
         if  req.method == "POST":
             username = req.POST['username']
             password = req.POST['password']
             user = authenticate(req, username=username, password=password)
 
+            #if user authentication passes, give them access to the dashboard.
             if user is not None:
                 login(req, user)
                 return redirect('dashboard/')
             else:
+                #if user not found, return error message.
                 messages.success(req, ( "There was an error, try again" ))
                 return redirect('/')
 
@@ -42,16 +46,10 @@ def register_view(req):
 
 @login_required(login_url = '/')
 def dashboard_view(req):
+    #Get authenticated user.
     user = req.user
-
+    #get authenticated user's profile or greate one.
     profile = Profile.objects.get_or_create(user=user)
-
-    # if profile:
-    #     ...
-    # else:
-    #     newProfile = Profile(phone_number='add phone number',home_address='add home address', latitude=0.0,longitude=0.0)
-    #     newProfile.save()
-
     context = {
         'user_obj': user,
     }
@@ -101,12 +99,15 @@ def userProfileLocation(req):
 
 @login_required(login_url = '/')
 def usersLocationMap(req):
+    #get all user's profiles
     profiles = Profile.objects.all()
+    #create a map instance
     m = folium.Map(location=[0, 10], zoom_start=3)
+    #loop through the users and add each user location to the map.
     for profile in profiles:
         print(profile)
         folium.Marker([profile.latitude, profile.longitude]).add_to(m)
-
+    #set map to render in html
     m = m._repr_html_()
     context = {
         'm': m,
